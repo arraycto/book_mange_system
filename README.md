@@ -1,5 +1,5 @@
 # book_mange_system
-2020-07-05 做的外包，图书管理系统（书店），用的是Spring Boot + Mybatis + HTML + Ajax + HTML
+2020-07-05 图书管理系统（书店），用的是Spring Boot + Mybatis + HTML + Ajax + HTML
 # 功能
 ## 管理员管理端
 - 权限鉴定：对每个接口都设置访问权限，只有拥有对应权限的用户才能访问该接口。
