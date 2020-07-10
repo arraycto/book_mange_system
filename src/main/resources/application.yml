@@ -50,4 +50,4 @@ logging:
 
 #修改端口号为10086
 server:
-  port: 10096
+  port: 10086
