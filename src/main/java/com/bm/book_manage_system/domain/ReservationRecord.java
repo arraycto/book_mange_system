@@ -4,17 +4,13 @@ import com.bm.book_manage_system.utils.annotation.SqlName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * 会员账号流水表
- */
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class BillRecord extends MainDomain {
+public class ReservationRecord extends MainDomain {
 
-    @SqlName(name="id")
+    @SqlName(name = "id")
     private Integer id;
 
     @SqlName(name = "vip_id")
@@ -26,18 +22,16 @@ public class BillRecord extends MainDomain {
     @SqlName(name = "type")
     private String type;
 
-    @SqlName(name = "amount")
-    private BigDecimal amount;
+    @SqlName(name = "value")
+    private Integer value;
 
-    @SqlName(name = "old_balance")
-    private BigDecimal oldBalance;
+    @SqlName(name = "old_reservation")
+    private Integer oldReservation;
 
-    @SqlName(name = "new_balance")
-    private BigDecimal newBalance;
+    @SqlName(name = "new_reservation")
+    private Integer newReservation;
 
     @SqlName(name = "reason")
     private String reason;
 
-    @SqlName(name = "order_id")
-    private String orderId;
 }

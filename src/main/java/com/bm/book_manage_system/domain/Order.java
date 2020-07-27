@@ -7,6 +7,9 @@ import lombok.EqualsAndHashCode;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 支付宝订单表
+ */
 @EqualsAndHashCode(callSuper = false)
 @Data
 public class Order extends MainDomain {

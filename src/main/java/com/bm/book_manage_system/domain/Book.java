@@ -8,6 +8,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 
+/**
+ * 图书基本信息表
+ */
 @EqualsAndHashCode(callSuper = false)
 @Data
 public class Book extends MainDomain {

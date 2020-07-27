@@ -4,12 +4,18 @@ import com.bm.book_manage_system.utils.annotation.SqlName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
- * 管理员表
+ * 会员信息表
  */
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class Manager extends MainDomain {
+public class Vip extends MainDomain {
+
+    @SqlName(name = "id")
+    private Integer id;
 
     @SqlName(name = "account")
     private String account;
@@ -26,9 +32,13 @@ public class Manager extends MainDomain {
     @SqlName(name = "sex")
     private String sex;
 
-    @SqlName(name = "profile")
-    private String profile;
+    @SqlName(name = "reservation")
+    private Integer reservation;
 
-    @SqlName(name = "level")
-    private Integer level;
+    @SqlName(name = "balance")
+    private BigDecimal balance;
+
+    @SqlName(name = "create_time")
+    private Date createTime;
+
 }

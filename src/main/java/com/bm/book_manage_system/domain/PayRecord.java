@@ -6,6 +6,9 @@ import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
+/**
+ * 支付记录单表
+ */
 @EqualsAndHashCode(callSuper = false)
 @Data
 public class PayRecord extends MainDomain {
