@@ -133,7 +133,8 @@
 				form.on('submit(demo1)', function(data){
 					layer.alert(JSON.stringify(data.field),{
 						title: '最终的提交信息'
-					})
+					});
+					location.href="http://localhost:10086/backend/index";
 					return false;
 				});
 				

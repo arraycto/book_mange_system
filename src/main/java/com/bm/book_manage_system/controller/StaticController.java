@@ -2,6 +2,8 @@ package com.bm.book_manage_system.controller;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,6 +17,8 @@ import java.io.IOException;
  */
 @Controller
 public class StaticController {
+
+    private static final Logger logger = LoggerFactory.getLogger(StaticController.class.getName());// slf4j日志记录器
 
     /**
      * 得到登陆验证码
@@ -35,7 +39,14 @@ public class StaticController {
     }
 
     @RequestMapping("/backend/login")
-    public String toStudentLogin() {
+    public String toBackendLogin() {
+        logger.info("验证通过，成功登录");
         return "backend_manage/login/index.html";
+    }
+
+    @RequestMapping("/backend/index")
+    public String toBackendIndex() {
+        logger.info("登录成功，进入首页");
+        return "backend_manage/home/index.html";
     }
 }
