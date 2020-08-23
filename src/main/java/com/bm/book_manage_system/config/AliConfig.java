@@ -24,10 +24,10 @@ public class AliConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwS72gmccRobxSTe2rK7GBFdLZmUx8GuXZpb9lMdLDr2Hv3AjW703XLCSPGxCEZc03fjcwzAhALR4DVx3IRENOIobiUan1Ex6Bg1cK1bBTzpwyMFcJfEO0Y/Zw6lYnlDbewn0dp0Xo1397k1KRg0xowlEclA2ztyfsmdtBH+MepGI7dXp1RQJ0I1owttCtaTf3kt6kuuTycOo7xzOvWps0PVpy2YRTZgzREiuGQ9jW3KDWMObQ612TDy+WcS2Cgp6Q6MKtUHB9uJuzDntklud0zJVpechQedFUm3bG2aYit0vCYLx1L2CTxhzuKy39PBPg9uINeiUNlati2cZ6CH8VwIDAQAB";
 
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url = "http://2uyhhy.natappfree.cc/v1.0.0/api/notifyFallback";
+    public static String notify_url = "http://6hrr33.natappfree.cc/order/recharge/notifyFallback";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String return_url = "http://2uyhhy.natappfree.cc/v1.0.0/api/synchronousFallback";
+    public static String return_url = "http://6hrr33.natappfree.cc/order/recharge/synchronousFallback";
 
     // 签名方式
     public static String sign_type = "RSA2";
@@ -37,6 +37,9 @@ public class AliConfig {
 
     // 支付宝网关---固定的
     public static String gatewayUrl = "https://openapi.alipaydev.com/gateway.do";
+
+    // 字符编码格式 目前支持 gbk 或 utf-8
+    public static String input_charset = "UTF-8";
 
     // 支付宝网关
     public static String log_path = "C:\\";

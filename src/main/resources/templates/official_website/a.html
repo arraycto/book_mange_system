@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>监考教师信息录入系统</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+</head>
+<body>
+<input type="button" value="Submit" onclick="submit()" />
+<iframe id="alipayFrame"></iframe>
+</body>
+<script type="text/javascript" src="/resources/layui/layui.js"></script>
+<script>
+  layui.use(['jquery'], function () {
+    $ = layui.jquery;
+  });
+  function submit() {
+    $.ajax({
+      type: "POST",
+      async: false,
+      url: "http://localhost:10086/order/recharge",
+      contentType: "application/json;charset=utf-8",
+      data: JSON.stringify({
+        vipId: "111111",
+        amount: "233.3"
+      }),
+      // dataType: "html",
+      success: function(result) {
+        debugger;
+        var o = document.getElementById('alipayFrame');
+        var ed = document.all ? o.contentWindow.document : o.contentDocument
+        ed.open();
+        ed.write(result); // 放入支付宝的表单数据
+        ed.close();
+        ed.contentEditable = true;
+        ed.designMode = 'on';
+      }
+    });
+  }
+</script>
+</html>

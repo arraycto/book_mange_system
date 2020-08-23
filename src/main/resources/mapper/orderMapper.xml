@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bm.book_manage_system.repository.OrderRepository">
+
+    <resultMap id="order" type="com.bm.book_manage_system.domain.Order" >
+        <result column="order_id" property="orderId" />
+        <result column="amount" property="amount" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+        <result column="deal_time" property="dealTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+        <result column="status" property="status" />
+        <result column="vip_id" property="vipId" />
+    </resultMap>
+
+    <insert id="saveOrder" parameterType="com.bm.book_manage_system.domain.Order" >
+        insert into `order` (order_id, amount, create_time, deal_time, status, vip_id)
+        values (#{order.orderId}, #{order.amount}, #{order.createTime}, #{order.dealTime}, #{order.status}, #{order.vipId})
+    </insert>
+</mapper>

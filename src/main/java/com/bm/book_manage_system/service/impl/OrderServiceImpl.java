@@ -7,6 +7,11 @@ import com.bm.book_manage_system.service.OrderService;
 import com.bm.book_manage_system.utils.OrderNoFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
 
 @Service
@@ -24,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     public Order initOrder(Order order) {
         order.setOrderId(OrderNoFactory.getOrderNo());
         order.setCreateTime(new Date());
-        order.setPayTime(null);
+        order.setDealTime(null);
         if(order.getVipId() == null || order.getAmount() == null) {
             return null;
         }
@@ -51,5 +56,26 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean cancelOrderByIds(String id) {
         return false;
+    }
+
+    @Override
+    public void recharge(HttpServletResponse response, HttpServletRequest request, Order order) {
+        order = initOrder(order);
+        if(order == null) {  //订单初始化异常交易取消
+            try {
+                response.sendRedirect("https://www.baidu.com");  //这里跳转到交易异常取消界面
+                return;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            request.setAttribute("order", order);
+            request.getRequestDispatcher("/pay/getQRCode").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
