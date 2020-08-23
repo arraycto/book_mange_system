@@ -40,7 +40,7 @@ public class StaticController {
 
     @RequestMapping("/backend/login")
     public String toBackendLogin() {
-        logger.info("验证通过，成功登录");
+        logger.info("启动成功，进入登录页面");
         return "backend_manage/login/index.html";
     }
 

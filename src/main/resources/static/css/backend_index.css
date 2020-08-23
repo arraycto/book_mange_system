@@ -1,0 +1,29 @@
+.head {
+    height: 190px;
+    margin-top: 10px;
+}
+
+.head-options {
+    height: 150px;
+    background: linear-gradient(to bottom left, #65b9cb, #64baad);
+}
+
+.head-options .head-log {
+    padding: 5px 0 0 5px;
+}
+
+.head-options img {
+    width: 90%;
+    height: 80px;
+}
+
+.head-options h1 {
+    line-height: 80px;
+    color: #FFFFFF;
+}
+
+.head-labels {
+    height: 30px;
+    margin-top: 5px;
+    background: #e5f4f1;
+}
