@@ -19,6 +19,7 @@ public class StaticController {
     /**
      * 得到登陆验证码
      */
+    @Deprecated
     @RequestMapping("/login/getCode")
     public void getCode(HttpServletResponse response, HttpSession session) {
         // 定义图形验证码的长和宽
@@ -31,5 +32,10 @@ public class StaticController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping("/backend/login")
+    public String toStudentLogin() {
+        return "backend_manage/login/index.html";
     }
 }
