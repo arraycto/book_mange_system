@@ -23,8 +23,8 @@ public class Order extends MainDomain {
     @SqlName(name = "create_time")
     private Date createTime;
 
-    @SqlName(name = "pay_time")
-    private Date payTime;
+    @SqlName(name = "deal_time")
+    private Date dealTime;
 
     @SqlName(name = "status")
     private String status;

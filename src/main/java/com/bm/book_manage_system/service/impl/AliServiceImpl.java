@@ -22,7 +22,6 @@ public class AliServiceImpl implements AliService {
 
     @Override
     public boolean pay(HttpServletResponse response, Order order) {
-        order = orderService.initOrder(order);
         if(order == null) {
             return false;
         }
@@ -43,7 +42,7 @@ public class AliServiceImpl implements AliService {
         String orderNumber = order.getOrderId();
 
         //订单名称，必填
-        String subject = "会员支付订单";
+        String subject = "**书店会员支付订单";
         aliPayRequest.setBizContent("{\"out_trade_no\":\"" + orderNumber + "\","
                 + "\"total_amount\":\"" + order.getAmount() + "\","
                 + "\"subject\":\"" + subject + "\","

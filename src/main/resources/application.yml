@@ -46,7 +46,7 @@ pagehelper:
 
 logging:
   level:
-    com.zhouxin.backend.repository: debug
+    com.bm.book_manage_system.repository: debug
 
 #修改端口号为10086
 server:

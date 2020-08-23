@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrderRepository {
-
     Boolean saveOrder(@Param("order")Order order);
 }
