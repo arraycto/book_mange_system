@@ -25,12 +25,55 @@
             </div>
             <div class="layui-col-xs2">
                 <div class="head-user">
-                    <span>当前用户：超级管理员</span>
+                    <span>
+                        当前用户：超级管理员
+                        <i class="layui-icon layui-icon-logout" style="font-size: 20px; color: red;"></i>
+                    </span>
                 </div>
             </div>
         </div>
-        <div class="layui-row head-labels">
+        <div class="layui-row head-options-buttons">
+            <div class="head-options-buttons-nav">
+                <span>
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    管理员信息管理
+                </span>
+                <span>
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    会员信息管理
+                </span>
+                <span>
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    图书借阅记录
+                </span>
+                <span>
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    图书信息管理
+                </span>
+                <span>
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    图书借阅信息管理
+                </span>
+                <span>
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    支付功能
+                </span>
+            </div>
         </div>
+        <div class="layui-row head-tabs">
+            <div class="layui-tab" lay-filter="tabs" lay-allowClose="true">
+                <ul class="layui-tab-title">
+                    <li class="layui-this" lay-id="11">欢迎页</li>
+                    <li lay-id="22">图书信息管理</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">欢迎评审图书管理系统后台管理系统</div>
+                    <div class="layui-tab-item">图书信息管理</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
     </div>
 </div>
 
@@ -38,5 +81,12 @@
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <!-- Layui Js -->
 <script type="text/javascript" src="/layui/layui.js"></script>
+<!-- 自定义的脚本 -->
+<script>
+    layui.use('element', function () {
+        const $ = layui.jquery;
+        const element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+    });
+</script>
 </body>
 </html>

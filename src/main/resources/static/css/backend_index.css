@@ -28,8 +28,39 @@
     font-size: 20px;
 }
 
-.head-labels {
-    height: 30px;
-    margin-top: 5px;
+.head-options-buttons {
+    height: 60px;
+    line-height: 60px;
+    position: relative;
+    top: -60px;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.head-options-buttons-nav {
+    float: right;
+}
+
+.head-options-buttons-nav span {
+    margin-right: 40px;
+}
+
+.head-options-buttons-nav span:hover {
+    cursor: pointer;
+}
+
+.head-tabs {
+    height: 40px;
+    position: relative;
+    top: -60px;
     background: #e5f4f1;
+}
+
+.content {
+}
+
+/* 覆盖layui选中选项卡的css */
+.layui-this {
+    color: #fff;
+    background: red;
 }
