@@ -22,6 +22,12 @@
     color: #FFFFFF;
 }
 
+.head-options .head-user {
+    line-height: 80px;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
 .head-labels {
     height: 30px;
     margin-top: 5px;
