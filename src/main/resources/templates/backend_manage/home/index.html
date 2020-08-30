@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理系统后台管理系统-主页</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="/css/backend_index.css" media="all"/>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="head">
+        <div class="layui-row head-options">
+            <div class="layui-col-xs10">
+                <div class="layui-row layui-col-space5">
+                    <div class="layui-col-md3 head-log">
+                        <img src="/img/logo.jpg" alt="系统logo">
+                    </div>
+                    <div class="layui-col-md9">
+                        <h1>图书管理系统后台管理系统</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs2">
+                <div class="head-user">
+                    <span>
+                        当前用户：超级管理员
+                        <i class="layui-icon layui-icon-logout" style="font-size: 20px; color: red;"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row head-options-buttons">
+            <div class="head-options-buttons-nav">
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/admin" data-id="1" data-title="管理员信息管理">
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    管理员信息管理
+                </span>
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/member" data-id="2" data-title="会员信息管理">
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    会员信息管理
+                </span>
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/book_borrow_record" data-id="3"
+                      data-title="图书借阅记录">
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    图书借阅记录
+                </span>
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/book_info" data-id="4"
+                      data-title="图书信息管理">
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    图书信息管理
+                </span>
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/book_borrow_info" data-id="5"
+                      data-title="图书借阅信息管理">
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    图书借阅信息管理
+                </span>
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/afford" data-id="6" data-title="支付功能">
+                    <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
+                    支付功能
+                </span>
+            </div>
+        </div>
+        <div class="layui-row head-tabs">
+            <div class="layui-tab" lay-filter="my-tabs" lay-allowClose="true">
+                <ul class="layui-tab-title">
+                    <li class="layui-this" lay-id="11">欢迎页</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">欢迎评审图书管理系统后台管理系统</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Jquery Js -->
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<!-- Layui Js -->
+<script type="text/javascript" src="/layui/layui.js"></script>
+<!-- 自定义的脚本 -->
+<script>
+    layui.use('element', function () {
+        const $ = layui.jquery;
+        const element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        // 触发事件
+        const active = {
+            tabAdd: function (url, id, title) {
+                element.tabAdd('my-tabs', {
+                    title: title,
+                    content: `<iframe id="my-content" src=${url}></iframe>`,
+                    id: id
+                });
+            },
+            tabChange: function (id) {
+                element.tabChange('my-tabs', id);
+            }
+        };
+
+        $('.my-nav-li').on('click', function () {
+            const othis = $(this);
+
+            let isData = false; // 初始化一个标志，为false说明未打开tab项，为true则说明有
+            $.each($('.layui-tab-title li[lay-id]'), function () {
+               if ($(this).attr('lay-id') === othis.attr('data-id')) {
+                   isData = true;
+               }
+            });
+
+            if (!isData) {
+                active.tabAdd(othis.attr('data-url'), othis.attr('data-id'), othis.attr('data-title'));
+            }
+
+            active.tabChange(othis.attr('data-id'));
+        });
+    });
+</script>
+</body>
+</html>
