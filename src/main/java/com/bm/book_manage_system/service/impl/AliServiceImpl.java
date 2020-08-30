@@ -20,49 +20,6 @@ public class AliServiceImpl implements AliService {
     @Autowired
     OrderService orderService;
 
-    @Override
-    public boolean pay(HttpServletResponse response, Order order) {
-        if(order == null) {
-            return false;
-        }
-        return doPay(response, order);
-    }
-
-    protected boolean doPay(HttpServletResponse response, Order order) {
-        //设置编码
-        response.setContentType("text/html;charset=utf-8");
-        //获得初始化的AlipayClient
-        AlipayClient alipayClient = new DefaultAlipayClient(AliConfig.gatewayUrl, AliConfig.app_id, AliConfig.merchant_private_key, "json", AliConfig.charset, AliConfig.alipay_public_key, AliConfig.sign_type);
-        //设置请求参数
-        AlipayTradePagePayRequest aliPayRequest = new AlipayTradePagePayRequest();
-        aliPayRequest.setReturnUrl(AliConfig.return_url);
-        aliPayRequest.setNotifyUrl(AliConfig.notify_url);
-
-        //商户订单号，后台可以写一个工具类生成一个订单号，必填
-        String orderNumber = order.getOrderId();
-
-        //订单名称，必填
-        String subject = "**书店会员支付订单";
-        aliPayRequest.setBizContent("{\"out_trade_no\":\"" + orderNumber + "\","
-                + "\"total_amount\":\"" + order.getAmount() + "\","
-                + "\"subject\":\"" + subject + "\","
-                    + "\"timeout_express\":\" 5m,\" "   //过期时间
-                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-        try {
-            alipayClient.pageExecute(aliPayRequest, "POST"); //请求支付宝
-            //保存支付记录
-           PayRecord payRecord = new PayRecord();
-           payRecord.setOrderId(order.getOrderId());
-           payRecord.setAmount(order.getAmount());
-           payRecord.setVipId(order.getVipId());
-           orderService.savePayRecords(payRecord);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
     //该方法是支付请求发送到支付宝的时候支付包很快会调用的方法但这个时候支付宝可能还没有扣款成功
     //这个回调主要用来给前台一个快速的响应
     @Override
@@ -93,5 +50,41 @@ public class AliServiceImpl implements AliService {
                 break;
             case "WAIT_BUYER_PAY": //交易创建，等待支付
         }
+    }
+
+    @Deprecated
+    protected boolean doPay(HttpServletResponse response, Order order) {
+        //设置编码
+        response.setContentType("text/html;charset=utf-8");
+        //获得初始化的AlipayClient
+        AlipayClient alipayClient = new DefaultAlipayClient(AliConfig.gatewayUrl, AliConfig.app_id, AliConfig.merchant_private_key, "json", AliConfig.charset, AliConfig.alipay_public_key, AliConfig.sign_type);
+        //设置请求参数
+        AlipayTradePagePayRequest aliPayRequest = new AlipayTradePagePayRequest();
+        aliPayRequest.setReturnUrl(AliConfig.return_url);
+        aliPayRequest.setNotifyUrl(AliConfig.notify_url);
+
+        //商户订单号，后台可以写一个工具类生成一个订单号，必填
+        String orderNumber = order.getOrderId();
+
+        //订单名称，必填
+        String subject = "**书店会员支付订单";
+        aliPayRequest.setBizContent("{\"out_trade_no\":\"" + orderNumber + "\","
+                + "\"total_amount\":\"" + order.getAmount() + "\","
+                + "\"subject\":\"" + subject + "\","
+                + "\"timeout_express\":\" 5m,\" "   //过期时间
+                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+        try {
+            alipayClient.pageExecute(aliPayRequest, "POST"); //请求支付宝
+            //保存支付记录
+            PayRecord payRecord = new PayRecord();
+            payRecord.setOrderId(order.getOrderId());
+            payRecord.setAmount(order.getAmount());
+            payRecord.setVipId(order.getVipId());
+            orderService.savePayRecords(payRecord);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

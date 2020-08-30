@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bm.book_manage_system.repository.VipRepository">
+
+    <resultMap id="order" type="com.bm.book_manage_system.domain.Vip" >
+        <result column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="password" property="password" />
+        <result column="name" property="name" />
+        <result column="tel" property="tel" />
+        <result column="sex" property="sex" />
+        <result column="reservation" property="reservation" />
+        <result column="balance" property="balance" />
+        <result column="create_time" property="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </resultMap>
+
+    <insert id="saveOrder" parameterType="com.bm.book_manage_system.domain.Order" >
+        insert into vip (id, account, password, `name`, tel, reservation, balance, create_time)
+        values (#{vip.id}, #{vip.account}, #{vip.password}, #{vip.name}, #{vip.tel}, #{vip.reservation}, #{vip.balance}, #{vip.createTime})
+    </insert>
+
+    <update id="updateById">
+        update vip
+        <foreach collection="newInfo" open="set" separator=", " index="key" item="value">
+            ${key } = #{value }
+        </foreach>
+        where id = #{vipId }
+    </update>
+
+    <update id="recharge">
+        update vip set balance = balance+#{amount} where id = #{vipId }
+    </update>
+</mapper>

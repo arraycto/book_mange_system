@@ -6,12 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface AliService {
-    /**
-     * 付款
-     * @param response
-     * @return 是否执行成功
-     */
-    boolean pay(HttpServletResponse response, Order order);
 
     /**
      * 同步回调方法

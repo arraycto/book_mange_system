@@ -15,4 +15,12 @@
         insert into `order` (order_id, amount, create_time, deal_time, status, vip_id)
         values (#{order.orderId}, #{order.amount}, #{order.createTime}, #{order.dealTime}, #{order.status}, #{order.vipId})
     </insert>
+
+    <insert id="updateById">
+        update `order`
+        <foreach collection="newInfo" open="set" separator=", " index="key" item="value">
+            ${key } = #{value }
+        </foreach>
+        where order_id = #{orderId }
+    </insert>
 </mapper>

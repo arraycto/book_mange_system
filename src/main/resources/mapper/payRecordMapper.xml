@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bm.book_manage_system.repository.PayRecordRepository">
+
+    <resultMap id="record" type="com.bm.book_manage_system.domain.PayRecord" >
+        <result column="order_id" property="orderId" />
+        <result column="amount" property="amount" />
+        <result column="vip_id" property="vipId" />
+    </resultMap>
+
+    <insert id="saveRecord" parameterType="com.bm.book_manage_system.domain.PayRecord" >
+        insert into pay_record (order_id, amount, vip_id) values (#{record.orderId}, #{record.amount}, #{record.vipId})
+    </insert>
+
+    <select id="getByOrderId">
+        select * from pay_record where order_id = #{id}
+    </select>
+</mapper>
