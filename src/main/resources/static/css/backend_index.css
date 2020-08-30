@@ -56,11 +56,14 @@
     background: #e5f4f1;
 }
 
-.content {
+#my-content {
+    /*border: 0;*/
+    width: 100%;
+    height: 550px;
 }
 
 /* 覆盖layui选中选项卡的css */
 .layui-this {
-    color: #fff;
-    background: red;
+    color: #fff !important;
+    background: #2b542c;
 }

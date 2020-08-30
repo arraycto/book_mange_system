@@ -49,4 +49,40 @@ public class StaticController {
         logger.info("登录成功，进入首页");
         return "backend_manage/home/index.html";
     }
+
+    @RequestMapping("/backend/admin")
+    public String toBackendAdmin() {
+        logger.info("进入管理员信息管理");
+        return "backend_manage/admin/index.html";
+    }
+
+    @RequestMapping("/backend/member")
+    public String toBackendMember() {
+        logger.info("进入会员信息管理");
+        return "backend_manage/member_manage/index.html";
+    }
+
+    @RequestMapping("/backend/book_borrow_record")
+    public String toBackendBookBorrowRecord() {
+        logger.info("进入图书借阅记录");
+        return "backend_manage/book_borrow_manage/book_borrow_record.html";
+    }
+
+    @RequestMapping("/backend/book_info")
+    public String toBackendBookInfo() {
+        logger.info("进入图书信息管理");
+        return "backend_manage/book_info_manage/index.html";
+    }
+
+    @RequestMapping("/backend/book_borrow_info")
+    public String toBackendBookBorrowInfo() {
+        logger.info("进入图书借阅信息管理");
+        return "backend_manage/book_borrow_manage/book_borrow_info.html";
+    }
+
+    @RequestMapping("/backend/afford")
+    public String toBackendAfford() {
+        logger.info("进入支付功能");
+        return "backend_manage/afford/index.html";
+    }
 }

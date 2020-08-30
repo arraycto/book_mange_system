@@ -34,46 +34,45 @@
         </div>
         <div class="layui-row head-options-buttons">
             <div class="head-options-buttons-nav">
-                <span>
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/admin" data-id="1" data-title="管理员信息管理">
                     <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
                     管理员信息管理
                 </span>
-                <span>
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/member" data-id="2" data-title="会员信息管理">
                     <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
                     会员信息管理
                 </span>
-                <span>
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/book_borrow_record" data-id="3"
+                      data-title="图书借阅记录">
                     <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
                     图书借阅记录
                 </span>
-                <span>
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/book_info" data-id="4"
+                      data-title="图书信息管理">
                     <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
                     图书信息管理
                 </span>
-                <span>
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/book_borrow_info" data-id="5"
+                      data-title="图书借阅信息管理">
                     <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
                     图书借阅信息管理
                 </span>
-                <span>
+                <span class="my-nav-li" data-type="tabAdd" data-url="/backend/afford" data-id="6" data-title="支付功能">
                     <i class="layui-icon layui-icon-read" style="font-size: 20px;"></i>
                     支付功能
                 </span>
             </div>
         </div>
         <div class="layui-row head-tabs">
-            <div class="layui-tab" lay-filter="tabs" lay-allowClose="true">
+            <div class="layui-tab" lay-filter="my-tabs" lay-allowClose="true">
                 <ul class="layui-tab-title">
                     <li class="layui-this" lay-id="11">欢迎页</li>
-                    <li lay-id="22">图书信息管理</li>
                 </ul>
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">欢迎评审图书管理系统后台管理系统</div>
-                    <div class="layui-tab-item">图书信息管理</div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="content">
     </div>
 </div>
 
@@ -86,6 +85,37 @@
     layui.use('element', function () {
         const $ = layui.jquery;
         const element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        // 触发事件
+        const active = {
+            tabAdd: function (url, id, title) {
+                element.tabAdd('my-tabs', {
+                    title: title,
+                    content: `<iframe id="my-content" src=${url}></iframe>`,
+                    id: id
+                });
+            },
+            tabChange: function (id) {
+                element.tabChange('my-tabs', id);
+            }
+        };
+
+        $('.my-nav-li').on('click', function () {
+            const othis = $(this);
+
+            let isData = false; // 初始化一个标志，为false说明未打开tab项，为true则说明有
+            $.each($('.layui-tab-title li[lay-id]'), function () {
+               if ($(this).attr('lay-id') === othis.attr('data-id')) {
+                   isData = true;
+               }
+            });
+
+            if (!isData) {
+                active.tabAdd(othis.attr('data-url'), othis.attr('data-id'), othis.attr('data-title'));
+            }
+
+            active.tabChange(othis.attr('data-id'));
+        });
     });
 </script>
 </body>
