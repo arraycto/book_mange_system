@@ -19,7 +19,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authenticationInterceptor).addPathPatterns("/api/**");
+//        registry.addInterceptor(authenticationInterceptor).addPathPatterns("/api/**");
         registry.addInterceptor(pageInterceptor).addPathPatterns("/api/**");
     }
 }
