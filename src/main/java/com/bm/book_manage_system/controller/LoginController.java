@@ -20,7 +20,7 @@ public class LoginController {
         Map<String, Object> result = new HashMap<>();
         String username = proof.get("username") + "";
         String password = proof.get("password") + "";
-        if(username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
+        if(username.trim().equals("") || password.trim().equals("")) {
             result.put("result", "fail");
             result.put("reason", "用户名或密码错误");
             return RetResponse.makeOKRsp(result);
